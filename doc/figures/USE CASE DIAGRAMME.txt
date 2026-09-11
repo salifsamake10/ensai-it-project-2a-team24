@@ -7,7 +7,7 @@ actor "Collaborateur" as COL
 actor "Administrateur" as A
 
 
-rectangle "Concurrent SNCF" {
+rectangle "Système Concurrent SNCF" {
 
 usecase "Créer un compte" as UC1
 usecase "Se connecter" as UC2
