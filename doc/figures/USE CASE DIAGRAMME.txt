@@ -1,0 +1,62 @@
+@startuml
+
+left to right direction
+
+actor "Client" as C
+actor "Collaborateur" as COL
+actor "Administrateur" as A
+
+
+rectangle "Concurrent SNCF" {
+
+usecase "Créer un compte" as UC1
+usecase "Se connecter" as UC2
+
+usecase "Rechercher un trajet" as UC3
+usecase "Réserver un trajet" as UC4
+usecase "Consulter ses réservations" as UC5
+usecase "Annuler une réservation" as UC6
+
+usecase "Gérer une ligne\nd'exploitation" as UC7
+usecase "Supprimer une ligne" as UC10
+usecase "Modifier une ligne" as UC9
+usecase "Créer une ligne" as UC8
+
+usecase "Gérer un trajet" as UC11
+usecase "Supprimer un trajet" as UC14
+usecase "Modifier un trajet" as UC13
+usecase "Planifier un trajet" as UC12
+
+usecase "Gérer les habilitations\nutilisateurs" as UC15
+
+}
+
+'UML include
+UC7 ..> UC8 : <<include>>
+UC7 ..> UC9 : <<include>>
+UC7 ..> UC10 : <<include>>
+
+UC11 ..> UC12 : <<include>>
+UC11 ..> UC13 : <<include>>
+UC11 ..> UC14 : <<include>>
+
+'Utilisateur authentifié
+C --> UC2
+COL --> UC2
+A --> UC2
+
+'Client
+C --> UC1
+C --> UC3
+C --> UC4
+C --> UC5
+C --> UC6
+
+'Collaborateur
+COL --> UC7
+COL --> UC11
+COL --> UC1
+'Administrateur
+A --> UC15
+
+@enduml
