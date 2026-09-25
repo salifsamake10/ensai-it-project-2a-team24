@@ -12,10 +12,6 @@ class Passager:
     """
     
     def __init__(self, id: int, age: int, classe_voyage: ClasseVoyage, prix: float):
-        """
-        Constructeur de la classe Passager.
-        Initialise les attributs de l'instance en mémoire.
-        """
         self.id = id
         self.age = age
         self.classe_voyage = classe_voyage
