@@ -1,12 +1,12 @@
-import requests
 import psycopg
+import requests
 
 TOKEN_SNCF = "ca7d129f-404d-4871-9e88-6af15fc22309"
 URL_BASE = "https://api.sncf.com/v1"
 
 
 def recuperer_gares():
-    """ 
+    """
     Récupère les gares disponibles avec l'API SNCF.
     Les gares sont disponibles par pages de 100 maximum, la fonction parcourt toutes les pages
     (jusqu'à ce qu'il y ait une page avec moins de 100 gares).
