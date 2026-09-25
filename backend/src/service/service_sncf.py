@@ -6,6 +6,14 @@ URL_BASE = "https://api.sncf.com/v1"
 
 
 def recuperer_gares():
+    """ 
+    Récupère les gares disponibles avec l'API SNCF.
+    Les gares sont disponibles par pages de 100 maximum, la fonction parcourt toutes les pages
+    (jusqu'à ce qu'il y ait une page avec moins de 100 gares).
+
+    Returns :
+        list: Liste contenant toutes les gares récupérées avec l'API SNCF
+    """
     url = f"{URL_BASE}/coverage/sncf/stop_areas"
 
     toutes_les_gares = []
@@ -46,6 +54,16 @@ if __name__ == "__main__":
 
 
 def enregistrer_gares(gares):
+    """
+    Enregistre les gares récupérées dans la base PostgreSQL, dans la table public.station.
+    On évite les doublons en vérifiant avec l'identifiant SNCF.
+
+    Arguments:
+        gares(list): Liste des gares récupérées depuis l'API SNCF.
+
+    Returns:
+        None
+    """
     connexion = psycopg.connect(
         host="10.233.126.1",
         port=5432,
@@ -77,12 +95,10 @@ def enregistrer_gares(gares):
     curseur.close()
     connexion.close()
 
-    print("Les gares ont été enregistrées !")
-
 
 if __name__ == "__main__":
     gares = recuperer_gares()
 
-    print("Nombre total de gares :", len(gares))
+    print("Nombre total gares :", len(gares))
 
     enregistrer_gares(gares)
