@@ -1,8 +1,7 @@
+from dotenv import load_dotenv
+import os
 import psycopg
 import requests
-
-TOKEN_SNCF = "ca7d129f-404d-4871-9e88-6af15fc22309"
-URL_BASE = "https://api.sncf.com/v1"
 
 
 def recuperer_gares():
@@ -14,7 +13,7 @@ def recuperer_gares():
     Returns :
         list: Liste contenant toutes les gares récupérées avec l'API SNCF
     """
-    url = f"{URL_BASE}/coverage/sncf/stop_areas"
+    url = f"{os.getenv('URL_BASE')}/coverage/sncf/stop_areas"
 
     toutes_les_gares = []
     start_page = 0
@@ -28,7 +27,7 @@ def recuperer_gares():
         reponse = requests.get(
             url,
             params=parametres,
-            auth=(TOKEN_SNCF, "")
+            auth=(os.getenv('TOKEN_SNCF'), "")
         )
 
         reponse.raise_for_status()
