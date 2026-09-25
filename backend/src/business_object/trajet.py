@@ -15,7 +15,7 @@ class Trajet:
         self.duree_minutes = duree_minutes
         self.capacite = capacite
         self.tarif_base = tarif_base
-    
+
     def __str__(self) -> str:
         """Retourne un résumé du trajet."""
         return (
