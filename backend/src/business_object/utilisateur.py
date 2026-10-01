@@ -4,10 +4,10 @@ from business_object.role import Role
 class Utilisateur:
     def __init__(
         self,
-        id: int,
         username: str,
         password_hash: str,
-        role: Role
+        role: Role,
+        id: int | None = None,
     ) -> None:
         self.id = id
         self.username = username

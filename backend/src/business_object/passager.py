@@ -1,4 +1,4 @@
-from backend.src.business_object.classe_voyage import ClasseVoyage
+from business_object.classe_voyage import ClasseVoyage
 
 class Passager:
     """
@@ -11,7 +11,13 @@ class Passager:
         prix (float): Prix individuel définitif pour ce passager.
     """
     
-    def __init__(self, id: int, age: int, classe_voyage: ClasseVoyage, prix: float):
+    def __init__(
+        self,
+        age: int,
+        classe_voyage: ClasseVoyage,
+        prix: float,
+        id: int | None = None,
+    ) -> None:
         self.id = id
         self.age = age
         self.classe_voyage = classe_voyage
