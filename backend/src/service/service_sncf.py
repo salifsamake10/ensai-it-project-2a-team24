@@ -2,7 +2,11 @@ import os
 from datetime import datetime
 
 import requests
-from modele_lignes import Gare
+from dotenv import load_dotenv
+
+from business_object.gare import Gare
+
+load_dotenv()
 
 
 class ServiceSNCF:
@@ -41,21 +45,21 @@ class ServiceSNCF:
             if place.get("stop_area")
         ]
 
-    def obtenir_gare(self, id_sncF: str) -> Gare:
+    def obtenir_gare(self, id_sncf: str) -> Gare:
         """Récupère une gare par identifiant ; lève ValueError si inconnue."""
-        if not id_sncF:
+        if not id_sncf:
             raise ValueError("L'identifiant de gare est obligatoire.")
         reponse = self.session.get(
-            f"{self.url_base}/stop_areas/{id_sncF}",
+            f"{self.url_base}/stop_areas/{id_sncf}",
             auth=(self.token, ""),
             timeout=15,
         )
         if reponse.status_code == 404:
-            raise ValueError(f"Gare SNCF inconnue : {id_sncF}")
+            raise ValueError(f"Gare SNCF inconnue : {id_sncf}")
         reponse.raise_for_status()
         gares = reponse.json().get("stop_areas", [])
         if not gares:
-            raise ValueError(f"Gare SNCF inconnue : {id_sncF}")
+            raise ValueError(f"Gare SNCF inconnue : {id_sncf}")
         return Gare(gares[0]["id"], gares[0]["name"])
 
     def _trajets(self, depart_id: str, arrivee_id: str, date_depart: datetime) -> list[dict]:
@@ -86,8 +90,12 @@ class ServiceSNCF:
     def obtenir_duree_trajet(
         self, depart_id: str, arrivee_id: str, date_depart: datetime
     ) -> int:
-        """Durée minimale en secondes des trajets proposés comportant un transport."""
+        """Retourne en minutes la durée minimale d'un trajet ferroviaire possible."""
         trajets = self._trajets(depart_id, arrivee_id, date_depart)
+
         if not trajets:
             raise ValueError("Aucun trajet ferroviaire possible à cette date.")
-        return min(trajet["duration"] for trajet in trajets)
+
+        duree_secondes = min(trajet["duration"] for trajet in trajets)
+
+        return duree_secondes // 60
