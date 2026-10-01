@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from business_object.ligne_exploitation import LigneExploitation
+from business_object.statut_trajet import StatutTrajet
 
 
 class Trajet:
@@ -17,6 +18,7 @@ class Trajet:
         duree_minutes: int,
         capacite: int,
         tarif_base: float,
+        statut: StatutTrajet = StatutTrajet.PLANIFIE,
         id: int | None = None,
     ) -> None:
         self.id = id
@@ -26,6 +28,7 @@ class Trajet:
         self.duree_minutes = duree_minutes
         self.capacite = capacite
         self.tarif_base = tarif_base
+        self.statut = statut
 
     def __str__(self) -> str:
         return (
