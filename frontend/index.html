@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f3ed">
+    <meta name="description" content="Trouvez et réservez votre prochain voyage en train.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Traverse — Le train, à votre rythme</title>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="#accueil" aria-label="Traverse, accueil">
+            <span class="brand-mark" aria-hidden="true">t.</span>
+            <span>traverse<span class="brand-period">.</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <a class="nav-link active" href="#recherche">Rechercher</a>
+            <button class="nav-link" id="open-reservations" type="button">Mes réservations</button>
+            <button class="nav-link staff-nav" id="open-workspace" type="button" hidden>Espace collaborateur</button>
+        </nav>
+        <div class="account-actions">
+            <span class="account-name" id="account-name" hidden></span>
+            <button class="button button-quiet" id="login-button" type="button">Connexion</button>
+            <button class="button button-dark" id="register-button" type="button">Créer un compte <span aria-hidden="true">↗</span></button>
+            <button class="button button-quiet" id="logout-button" type="button" hidden>Déconnexion</button>
+        </div>
+    </header>
+
+    <main id="accueil">
+        <section class="intro-shell" id="recherche">
+            <div class="intro-copy">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> LE VOYAGE COMMENCE ICI</p>
+                <h1>Le train,<br>à votre <span>rythme.</span></h1>
+                <p class="intro-text">Des trajets qui vous ressemblent. Choisissez votre prochaine destination, on s’occupe du reste.</p>
+                <div class="trust-line"><span class="trust-stars" aria-label="5 étoiles">★★★★★</span><span>Le voyage en toute transparence</span></div>
+            </div>
+            <div class="visual-panel" role="img" aria-label="Train traversant un paysage verdoyant">
+                <div class="visual-caption"><span>LA FRANCE, AUTREMENT</span><span class="caption-line"></span><span>01 / 03</span></div>
+                <div class="visual-note"><span class="note-label">VOTRE PROCHAIN DÉPART</span><strong>Et si on prenait<br>le temps ?</strong><span class="note-arrow" aria-hidden="true">↗</span></div>
+            </div>
+        </section>
+
+        <section class="search-section" aria-labelledby="search-title">
+            <div class="section-heading">
+                <div><p class="eyebrow">À VOUS DE VOIR</p><h2 id="search-title">Où vous emmène-t-on ?</h2></div>
+                <span class="section-index">01 — RECHERCHE</span>
+            </div>
+            <form class="search-form" id="search-form" autocomplete="off">
+                <div class="field station-field">
+                    <label for="departure">Gare de départ</label>
+                    <div class="input-wrap"><span class="field-icon departure-icon" aria-hidden="true"></span><input id="departure" name="departure" type="text" placeholder="Ex. Paris Gare de Lyon" required aria-autocomplete="list"><input id="departure-id" name="departureId" type="hidden"><div class="suggestions" id="departure-suggestions" role="listbox"></div></div>
+                </div>
+                <button class="swap-button" id="swap-stations" type="button" aria-label="Inverser les gares" title="Inverser les gares">⇄</button>
+                <div class="field station-field">
+                    <label for="arrival">Gare d’arrivée</label>
+                    <div class="input-wrap"><span class="field-icon arrival-icon" aria-hidden="true"></span><input id="arrival" name="arrival" type="text" placeholder="Ex. Lyon Part-Dieu" required aria-autocomplete="list"><input id="arrival-id" name="arrivalId" type="hidden"><div class="suggestions" id="arrival-suggestions" role="listbox"></div></div>
+                </div>
+                <div class="field date-field">
+                    <label for="travel-date">Date du voyage</label>
+                    <div class="input-wrap"><span class="field-icon calendar-icon" aria-hidden="true"></span><input id="travel-date" name="date" type="date" required></div>
+                </div>
+                <button class="button button-lime search-button" type="submit"><span>Rechercher</span><span aria-hidden="true">↗</span></button>
+            </form>
+            <div class="search-meta"><span id="search-message" role="status">Les horaires et trajets sont fournis par notre réseau.</span><div class="quick-dates"><span>Partir :</span><button type="button" data-date-offset="0">Aujourd’hui</button><button type="button" data-date-offset="1">Demain</button></div></div>
+        </section>
+
+        <section class="results-section" id="results-section" aria-live="polite" hidden>
+            <div class="section-heading results-heading"><div><p class="eyebrow">VOTRE SÉLECTION</p><h2 id="results-title">Trajets disponibles</h2></div><span class="section-index" id="results-count"></span></div>
+            <div class="results-list" id="results-list"></div>
+        </section>
+
+        <section class="value-strip" aria-label="Nos engagements">
+            <div class="value-item"><span class="value-number">01</span><div><strong>Le bon trajet</strong><span>Des horaires pensés pour vous</span></div></div>
+            <div class="value-item"><span class="value-number">02</span><div><strong>Le juste prix</strong><span>Une tarification claire, sans surprise</span></div></div>
+            <div class="value-item"><span class="value-number">03</span><div><strong>Plus de liberté</strong><span>Vos réservations restent les vôtres</span></div></div>
+        </section>
+
+        <section class="workspace" id="workspace" hidden>
+            <div class="section-heading"><div><p class="eyebrow">OUTILS ÉQUIPE</p><h2>Gestion des trajets</h2></div><span class="section-index">ESPACE COLLABORATEUR</span></div>
+            <div class="workspace-tabs" role="tablist" aria-label="Gestion">
+                <button class="workspace-tab active" type="button" role="tab" aria-selected="true" data-workspace-tab="lines">Lignes d’exploitation</button>
+                <button class="workspace-tab" type="button" role="tab" aria-selected="false" data-workspace-tab="trips">Trajets planifiés</button>
+            </div>
+            <div class="workspace-content" id="lines-panel" role="tabpanel">
+                <form class="manage-form" id="line-form">
+                    <h3 id="line-form-title">Créer une ligne</h3>
+                    <input id="line-id" type="hidden">
+                    <label>Nom de la ligne<input id="line-name" name="name" type="text" placeholder="Ex. Paris — Lyon" required></label>
+                    <label class="station-manage-field">Gare de départ<div class="input-wrap"><input id="line-departure" type="text" placeholder="Rechercher une gare" required aria-autocomplete="list"><input id="line-departure-id" name="departure_station_id" type="hidden"><div class="suggestions" id="line-departure-suggestions" role="listbox"></div></div></label>
+                    <label class="station-manage-field">Gare terminus<div class="input-wrap"><input id="line-arrival" type="text" placeholder="Rechercher une gare" required aria-autocomplete="list"><input id="line-arrival-id" name="arrival_station_id" type="hidden"><div class="suggestions" id="line-arrival-suggestions" role="listbox"></div></div></label>
+                    <div class="form-actions"><button class="button button-lime" type="submit">Enregistrer la ligne</button><button class="button button-quiet cancel-edit" type="button" data-cancel="line" hidden>Annuler</button></div>
+                </form>
+                <div class="manage-list" id="lines-list"><div class="empty-state">Charge les lignes pour commencer.</div></div>
+            </div>
+            <div class="workspace-content" id="trips-panel" role="tabpanel" hidden>
+                <form class="manage-form trip-form" id="trip-form">
+                    <h3 id="trip-form-title">Planifier un trajet</h3>
+                    <input id="trip-id" type="hidden">
+                    <label>Ligne<input id="trip-line-id" name="line_id" type="text" placeholder="Identifiant de ligne" required></label>
+                    <label>Départ<input id="trip-departure-time" name="departure_time" type="datetime-local" required></label>
+                    <label>Places<input id="trip-seats" name="seats" type="number" min="1" placeholder="Nombre de places" required></label>
+                    <label>Tarif (€)<input id="trip-price" name="price" type="number" min="0" step="0.01" placeholder="0,00" required></label>
+                    <div class="form-actions"><button class="button button-lime" type="submit">Enregistrer le trajet</button><button class="button button-quiet cancel-edit" type="button" data-cancel="trip" hidden>Annuler</button></div>
+                </form>
+                <div class="manage-list" id="trips-list"><div class="empty-state">Charge les trajets pour commencer.</div></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer"><a class="brand footer-brand" href="#accueil"><span class="brand-mark" aria-hidden="true">t.</span><span>traverse<span class="brand-period">.</span></span></a><span>Le plaisir du trajet, simplement.</span><span>© Traverse 2026</span></footer>
+
+    <dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title">
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Fermer">×</button>
+        <p class="eyebrow">BIENVENUE À BORD</p><h2 id="auth-title">Content de vous revoir.</h2>
+        <div class="auth-tabs" role="tablist"><button type="button" class="auth-tab active" data-auth-mode="login">Connexion</button><button type="button" class="auth-tab" data-auth-mode="register">Créer un compte</button></div>
+        <form id="auth-form">
+            <label>Nom d’utilisateur<input id="auth-username" name="username" autocomplete="username" required></label>
+            <label>Mot de passe<input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="6"></label>
+            <button class="button button-dark auth-submit" type="submit">Se connecter <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="dialog-message" id="auth-message" role="status"></p>
+    </dialog>
+
+    <dialog class="reservations-dialog" id="reservations-dialog" aria-labelledby="reservations-title">
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Fermer">×</button>
+        <p class="eyebrow">VOTRE CARNET DE VOYAGE</p><h2 id="reservations-title">Mes réservations</h2>
+        <div id="reservations-list" class="reservations-list"></div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="script.js" defer></script>
+</body>
+</html>
