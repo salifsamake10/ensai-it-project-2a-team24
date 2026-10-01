@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-from role import Role
-
-class Utilisateur:
-    def __init__(self, username, password, role, id_user = None):
-        self.id_user = id_user
-        self.id_user = username
-        self.password = password
-        self.role = role
-
-    def verifier_mot_de_passe(
-        self,
-        mot_de_passe: str
-    ) -> bool:
-        pass
-
-    def changer_role(
-        self,
-        nouveau_role: Role
-    ) -> None:
-        pass
-=======
 from business_object.role import Role
 
 
@@ -49,4 +27,3 @@ if __name__ == "__main__":
     print(utilisateur.username)
     print(utilisateur.password_hash)
     print(utilisateur.role)
->>>>>>> 20a66599f4f4671739fb5c834c9ccea366ed32fb
