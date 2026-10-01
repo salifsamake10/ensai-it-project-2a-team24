@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-class Reservation:
-    def __init__(self, date_reservation, statut, prix_total, id_reservation = None):
-        self.date_reservation = date_reservation
-        self.statut = statut
-        self.prix_total = prix_total
-        self.id_reservation = id_reservation
-=======
 from datetime import datetime
 
 from business_object.passager import Passager
@@ -31,4 +23,3 @@ class Reservation:
         self.date_reservation = date_reservation
         self.statut = statut
         self.prix_total = prix_total
->>>>>>> 20a66599f4f4671739fb5c834c9ccea366ed32fb
