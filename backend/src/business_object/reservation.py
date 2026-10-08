@@ -15,9 +15,9 @@ class Reservation:
         date_reservation: datetime,
         statut: StatutReservation,
         prix_total: float,
-        id: int | None = None,
+        id_reservation: int | None = None,
     ) -> None:
-        self.id = id
+        self.id_reservation = id_reservation
         self.utilisateur = utilisateur
         self.trajet = trajet
         self.passagers = passagers

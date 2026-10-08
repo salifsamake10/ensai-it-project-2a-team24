@@ -17,9 +17,9 @@ class Passager:
         age: int,
         classe_voyage: ClasseVoyage,
         prix: float,
-        id: int | None = None,
+        id_passager: int | None = None,
     ) -> None:
-        self.id = id
+        self.id_passager = id_passager
         self.age = age
         self.classe_voyage = classe_voyage
         self.prix = prix

@@ -19,9 +19,9 @@ class Trajet:
         capacite: int,
         tarif_base: float,
         statut: StatutTrajet = StatutTrajet.PLANIFIE,
-        id: int | None = None,
+        id_trajet: int | None = None,
     ) -> None:
-        self.id = id
+        self.id_trajet = id_trajet
         self.ligne = ligne
         self.date_heure_depart = date_heure_depart
         self.date_heure_arrivee = date_heure_arrivee
@@ -32,7 +32,7 @@ class Trajet:
 
     def __str__(self) -> str:
         return (
-            f"Trajet {self.id} : de {self.date_heure_depart} "
+            f"Trajet {self.id_trajet} : de {self.date_heure_depart} "
             f"à {self.date_heure_arrivee} "
             f"({self.duree_minutes} min, {self.capacite} places, "
             f"{self.tarif_base}€)"

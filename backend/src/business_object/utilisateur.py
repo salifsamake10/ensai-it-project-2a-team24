@@ -7,9 +7,9 @@ class Utilisateur:
         username: str,
         password_hash: str,
         role: Role,
-        id: int | None = None,
+        id_utilisateur: int | None = None,
     ) -> None:
-        self.id = id
+        self.id_utilisateur = id_utilisateur
         self.username = username
         self.password_hash = password_hash
         self.role = role
@@ -17,13 +17,13 @@ class Utilisateur:
 
 if __name__ == "__main__":
     utilisateur = Utilisateur(
-        id=1,
+        id_utilisateur=1,
         username="alice",
         password_hash="hash_test",
         role=Role.CLIENT
     )
 
-    print(utilisateur.id)
+    print(utilisateur.id_utilisateur)
     print(utilisateur.username)
     print(utilisateur.password_hash)
     print(utilisateur.role)
