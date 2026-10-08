@@ -37,6 +37,7 @@ CREATE TABLE trajet (
     date_heure_arrivee    TIMESTAMP NOT NULL,
     duree_minutes         INTEGER NOT NULL,
     capacite              INTEGER NOT NULL,
+    places_reservees      INTEGER NOT NULL DEFAULT 0,
     tarif_base            NUMERIC(10, 2) NOT NULL,
     statut                VARCHAR(20) NOT NULL DEFAULT 'PLANIFIE',
 

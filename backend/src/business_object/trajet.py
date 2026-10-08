@@ -20,6 +20,7 @@ class Trajet:
         tarif_base: float,
         statut: StatutTrajet = StatutTrajet.PLANIFIE,
         id_trajet: int | None = None,
+        places_reservees: int = 0,
     ) -> None:
         self.id_trajet = id_trajet
         self.ligne = ligne
@@ -27,6 +28,7 @@ class Trajet:
         self.date_heure_arrivee = date_heure_arrivee
         self.duree_minutes = duree_minutes
         self.capacite = capacite
+        self.places_reservees = places_reservees
         self.tarif_base = tarif_base
         self.statut = statut
 

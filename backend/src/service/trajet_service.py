@@ -6,6 +6,9 @@ from dao.trajet_dao import TrajetDao
 from fastapi import HTTPException
 
 
+class TrajetImpossibleError(ValueError):
+    pass
+
 class TrajetService:
 
     def creer_trajet(
@@ -23,7 +26,7 @@ class TrajetService:
         if prix_de_base < 0:
             raise HTTPException(status_code=400, detail="Le prix de base ne peut pas être négatif.")
 
-        ligne = LigneExploitationDao().find_by_id(ligne_id)
+        ligne = LigneExploitationDao().get_ligne_by_id(ligne_id)
 
         if not ligne:
             raise HTTPException(status_code=404, detail="Ligne d'exploitation inconnue")
