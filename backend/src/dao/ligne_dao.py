@@ -20,11 +20,11 @@ class LigneDAO:
                     """,
                     (ligne.gare_depart.id_sncf, ligne.gare_arrivee.id_sncf),
                 )
-                ligne.id = cursor.fetchone()[0]
+                ligne.id_ligne_exploitation = cursor.fetchone()[0]
 
         return ligne
 
-    def get_ligne_by_id(self, id_ligne: int) -> LigneExploitation | None:
+    def get_ligne_by_id(self, id_ligne_exploitation: int) -> LigneExploitation | None:
         """Récupère une ligne à partir de son identifiant."""
         with get_connection() as conn:
             with conn.cursor() as cursor:
@@ -39,7 +39,7 @@ class LigneDAO:
                     JOIN gare ga ON l.gare_arrivee_id = ga.id_sncf
                     WHERE l.id = %s
                     """,
-                    (id_ligne,),
+                    (id_ligne_exploitation,),
                 )
                 resultat = cursor.fetchone()
 
