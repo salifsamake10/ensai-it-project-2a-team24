@@ -2,9 +2,8 @@ import os
 from datetime import datetime
 
 import requests
-from dotenv import load_dotenv
-
 from business_object.gare import Gare
+from dotenv import load_dotenv
 
 load_dotenv()
 

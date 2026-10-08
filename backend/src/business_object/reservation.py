@@ -5,6 +5,7 @@ from business_object.statut_reservation import StatutReservation
 from business_object.trajet import Trajet
 from business_object.utilisateur import Utilisateur
 
+
 class Reservation:
     def __init__(
         self,

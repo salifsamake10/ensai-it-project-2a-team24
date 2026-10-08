@@ -1,7 +1,8 @@
-from dotenv import load_dotenv
 import os
+
 import psycopg
 import requests
+from dotenv import load_dotenv
 
 
 def recuperer_gares():

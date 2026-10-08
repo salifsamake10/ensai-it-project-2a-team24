@@ -1,10 +1,9 @@
 from datetime import datetime, timedelta
 
-from fastapi import HTTPException
-
 from business_object.trajet import Trajet
-from dao.trajet_dao import TrajetDao
 from dao.ligne_exploitation_dao import LigneExploitationDao
+from dao.trajet_dao import TrajetDao
+from fastapi import HTTPException
 
 
 class TrajetService:
